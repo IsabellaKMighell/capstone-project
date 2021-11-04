@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
     end
 
     def show
-        render json: @current_user
+        render json: @current_user, status: :ok
     end
   
     def destroy
