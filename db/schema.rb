@@ -10,9 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_11_06_003809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "business_users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.string "title"
+    t.bigint "business_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["business_id"], name: "index_business_users_on_business_id"
+  end
+
+  create_table "businesses", force: :cascade do |t|
+    t.string "name"
+    t.float "longitude"
+    t.float "latitude"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "consumers", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.string "title"
+    t.float "longitude"
+    t.float "latitude"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "lines", force: :cascade do |t|
+    t.bigint "consumer_id", null: false
+    t.bigint "business_id", null: false
+    t.boolean "checked_in"
+    t.float "distance"
+    t.integer "time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["business_id"], name: "index_lines_on_business_id"
+    t.index ["consumer_id"], name: "index_lines_on_consumer_id"
+  end
+
+  add_foreign_key "business_users", "businesses"
+  add_foreign_key "lines", "businesses"
+  add_foreign_key "lines", "consumers"
 end

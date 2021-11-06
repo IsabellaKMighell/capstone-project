@@ -4,7 +4,6 @@ class CreateBusinesses < ActiveRecord::Migration[6.1]
       t.string :name
       t.float :longitude
       t.float :latitude
-      t.belongs_to :business_users
 
       t.timestamps
     end

@@ -3,6 +3,7 @@ class CreateConsumers < ActiveRecord::Migration[6.1]
     create_table :consumers do |t|
       t.string :username
       t.string :password_digest
+      t.string :title
       t.float :longitude
       t.float :latitude
 
