@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 function CreateNewUser({ setUser, ADMIN}) {
 	const [formData, setFormData] = useState({
@@ -12,14 +12,17 @@ function CreateNewUser({ setUser, ADMIN}) {
 
    
 
-	function handleChange(e, { name, value }) {
+	function handleChange(e) {
+		let name = e.target.name;
+        let value = e.target.value;
 		setFormData({ ...formData, [name]: value });
 	}
 
 	function handleSubmit(e) {
 		e.preventDefault();
 		console.log(formData);
-		fetch(`/signup`, {
+		ADMIN = formData.user;
+		fetch(`/${formData.user}_signup`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -45,9 +48,9 @@ function CreateNewUser({ setUser, ADMIN}) {
 
 	const loginForm = (
 		<>
-			<h1>Create New User</h1>
+			<h1>Create an account</h1>
 			<form onSubmit={handleSubmit}>
-            <label>Enter your username:
+            <label>Enter your username: 
                 <input 
                 type="username" 
                 name="username" 
@@ -56,7 +59,7 @@ function CreateNewUser({ setUser, ADMIN}) {
                 onChange={handleChange}
                 />
             </label>
-            <label>Password</label>
+            <label> Password </label>
 				<input
 					type="text"
 					placeholder="Password"
@@ -65,17 +68,26 @@ function CreateNewUser({ setUser, ADMIN}) {
 					onChange={handleChange}
 				/>
 
-				<select value={formData.user} onChange={handleChange}>
-        			<option value="consumer">Consumer</option>
-        			<option value="business_user">Business User</option>
+				<select value={formData.user} onChange={handleChange} name="user">
+        			<option value="consumer"> Consumer </option>
+        			<option value="business_user"> Business User </option>
 				</select>
+
+				<input type="submit"/>
             
 			</form>
+			
         </>
 				
 	);
 	return (
-		<div>{loginForm}</div>
+		<div>
+			<div>{loginForm}</div>
+			<div>
+				Already have an account?
+			<Link to={`/login`}><button>Login</button></Link>
+			</div>
+		</div>
 	);
 }
 export default CreateNewUser;

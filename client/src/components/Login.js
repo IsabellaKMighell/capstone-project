@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 function Login({ setUser, ADMIN }) {
 	const [formData, setFormData] = useState({
@@ -11,11 +11,13 @@ function Login({ setUser, ADMIN }) {
 	const [errors, setErrors] = useState(null);
 	const history = useHistory();
 
-	function handleChange(e, { name, value }) {
+	function handleChange(e) {
+		let name = e.target.name;
+        let value = e.target.value;
 		setFormData({ ...formData, [name]: value });
 	}
 
-	function handleSubmit(e) {
+	function handleSubmit(e, setUser) {
 		e.preventDefault();
 		ADMIN = formData.user;
 		console.log(ADMIN);
@@ -70,7 +72,7 @@ function Login({ setUser, ADMIN }) {
 						onChange={handleChange}
 					/>
 
-					<select value={formData.user} onChange={handleChange}>
+					<select value={formData.user} onChange={handleChange} name="user">
         				<option value="consumer">Consumer</option>
         				<option value="business_user">Business User</option>
 					</select>
@@ -82,8 +84,10 @@ function Login({ setUser, ADMIN }) {
 		</>
 	);
 	return (
+		<div>
 		<div>{loginForm}</div>
-		
+		<Link to={`/new_user`}><button>Create an Account</button></Link>
+		</div>
 	);
 }
 

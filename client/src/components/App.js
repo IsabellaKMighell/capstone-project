@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Auth from "./Auth";
+import BusinessUser from "./BusinessUser"
 
 import {
 	Switch,
@@ -33,9 +34,9 @@ function App() {
 
 	function setAdmin(data) {
 		console.log(data);
-		if (data.hasOwnProperty("businesses")) {
+		if (data.hasOwnProperty("business_user")) {
 			ADMIN = "business_user";
-		} else if (data.hasOwnProperty("lines")) {
+		} else if (data.hasOwnProperty("consumer")) {
 			ADMIN = "consumer";
 		} else {
 			ADMIN = null;
@@ -63,37 +64,9 @@ function App() {
 	}
 	return (
 		<div className="App">
-			<NavBar handleLogout={handleLogout} user={user} ADMIN={ADMIN} />
-			<Switch>
-				<Route exact path="/">
-					{user ? (
-						<Redirect to="/business_user" />
-					) : (
-						<Redirect to="/login" />
-					)}
-				</Route>
-				{user ? (
-					<>
-						{ADMIN === "business_user" ? (
-							<div>
-								<Route exact path="/business_user">
-								</Route>
-							</div>
-						) : (
-							<>
-								{ADMIN === "consumer" ? (
-									<>
-										<Route exact path="/consumer">
-										</Route>
-									</>
-								) : null}
-							</>
-						)}
-					</>
-				) : null}
-				;
-				<Auth setUser={setUser} user={user} ADMIN={ADMIN} />
-			</Switch>
+		<NavBar handleLogout={handleLogout} user={user} ADMIN={ADMIN} />
+			
+		<Auth setUser={setUser} user={user} ADMIN={ADMIN} />
 		</div>
 	);
 }

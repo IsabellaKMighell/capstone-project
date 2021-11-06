@@ -7,10 +7,6 @@ class BusinessUsersController < ApplicationController
         render json: business_user ,status: :created
     end
 
-    def show
-        render json: @current_user, status: :ok
-    end
-
     private
 
     def business_user_params

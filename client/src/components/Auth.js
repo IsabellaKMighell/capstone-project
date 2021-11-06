@@ -1,20 +1,20 @@
 import CreateNewUser from "./CreateNewUser";
 import Login from "./Login";
-import { BrowserRouter as Route } from "react-router-dom";
+import { BrowserRouter as Route , Switch} from "react-router-dom";
 
 function Auth({ setUser, user, ADMIN }) {
 	// if (!user) return <Login setUser={setUser} />;
 	// if (user) return <Parent user={user} />;
 
 	return (
-		<>
-			<Route exact path="/login">
-				<Login setUser={setUser} ADMIN={ADMIN} />
-			</Route>
-			<Route exact path="/add_new_user">
-				<CreateNewUser setUser={setUser} ADMIN={ADMIN} />
-			</Route>
-		</>
+		<Switch>
+		<Route path="/login">
+			<Login setUser={setUser} ADMIN={ADMIN} user={user}/>
+		</Route>
+		<Route path="/new_user">
+			<CreateNewUser setUser={setUser} ADMIN={ADMIN} user={user}/>
+		</Route>
+		</Switch>
 	);
 }
 export default Auth;
