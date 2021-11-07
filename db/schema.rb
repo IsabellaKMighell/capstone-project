@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2021_11_06_003809) do
 
   create_table "businesses", force: :cascade do |t|
     t.string "name"
+    t.string "image"
+    t.string "address"
     t.float "longitude"
     t.float "latitude"
     t.datetime "created_at", precision: 6, null: false

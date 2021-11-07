@@ -1,5 +1,5 @@
-
-function Business({id, name, longitude, latitude}) {
+import {Link} from "react-router-dom"
+function Business({id, name, address, logo, handleIndividualBusiness}) {
     
       
 
@@ -7,7 +7,9 @@ function Business({id, name, longitude, latitude}) {
     //need to add a border to table
     return (
         <div className="businessesDiv">
-            <h4>{name}</h4>
+            <img src={logo} alt="Business Logo" className="logo"/>
+            <Link to="/business_page"><button onClick={() =>handleIndividualBusiness(id)}>{name}</button> </Link>
+            <h4>{address}</h4>
             
         </div>
     );

@@ -7,12 +7,15 @@ import {
 } from "react-router-dom";
 import NavBar from "./Navbar";
 import Home from "./Home"
+import IndividualBusiness from "./IndividualBusiness";
 
 function App() {
 	const [user, setUser] = useState(null);
 	const [reRender, setReRender] = useState(false);
 	const [businesses, setBusinesses] = useState([])
-	
+	const[business, setBusiness]=useState([]);
+	const [lat, setLat] = useState(null)
+	const [long, setLong] = useState(null)
 
 
 	const history = useHistory();
@@ -43,31 +46,28 @@ function App() {
 				console.log(error.message);
 			});
 	}
+	
 
-	/*
-	//geolocation functionality
-	const [latitude, setLatitude] = useState(null)
-	const [longitude, setLongitude] = useState(null)
+	
 	navigator.geolocation.getCurrentPosition(function(position) {
-		setLatitude( position.coords.latitude)
-		setLongitude(position.coords.longitude)
+		setLat( position.coords.latitude)
+		setLong(position.coords.longitude)
 		  });
-	
-	
-	function setLocation(longitude, latitude){
-		fetch("/consumers",{
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
-				longitude: {longitude},
-				latitude: {latitude},
-			}),
-		})
-			.then((r) => r.json())
 
-	}*/
+	function handleIndividualBusiness(id){
+		console.log(id)
+		fetch(`/businesses/${id}`)
+		.then(r=>r.json())
+		.then(data => {
+			console.log(data)
+			setBusiness(data)
+			setReRender(!reRender)
+				
+		})
+	
+	}
+
+	
 	function handleLogout() {
 		fetch("/logout", {
 			method: "DELETE",
@@ -88,7 +88,10 @@ function App() {
 		<NavBar handleLogout={handleLogout} user={user} />
 		<Auth setUser={setUser} user={user} />
 			<Route path="/consumers">
-				<Home businesses={businesses}/>
+				<Home businesses={businesses} user={user} handleIndividualBusiness={handleIndividualBusiness}/>
+			</Route>
+			<Route path="/business_page">
+					<IndividualBusiness business={business} lat={lat} long={long} user={user}/>
 			</Route>
 		</div>
 	);

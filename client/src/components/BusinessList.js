@@ -2,7 +2,7 @@ import Business from './Business';
 
 
 
-function BusinessList({businesses}) {
+function BusinessList({businesses, handleIndividualBusiness}) {
 
     let businessList= businesses.map((business)=>{
         return(
@@ -12,6 +12,9 @@ function BusinessList({businesses}) {
             name={business.name}
             latitude={business.latitude}
             longitude={business.longitude}
+            address={business.address}
+            logo={business.image}
+            handleIndividualBusiness={handleIndividualBusiness}
             />
         )
     })
