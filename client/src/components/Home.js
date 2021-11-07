@@ -1,12 +1,12 @@
-
-function Home() {
-	
+import React from "react";
+import BusinessList from "./BusinessList";
+function Home({businesses}) {
 
 	return (
 		<div>
             <h2>Welcome to line succession</h2>
-            <h4></h4>
-
+            
+			<BusinessList businesses={businesses}/>
 		</div>
 	);
 }

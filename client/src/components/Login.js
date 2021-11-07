@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 
-function Login({ setUser, ADMIN }) {
+function Login({ setUser}) {
 	const [formData, setFormData] = useState({
 		username: "",
 		password: "",
 		user: "",
 	});
 	
+	
 	const [errors, setErrors] = useState(null);
-	const history = useHistory();
 
 	function handleChange(e) {
 		let name = e.target.name;
@@ -17,10 +17,8 @@ function Login({ setUser, ADMIN }) {
 		setFormData({ ...formData, [name]: value });
 	}
 
-	function handleSubmit(e, setUser) {
+	function handleSubmit(e) {
 		e.preventDefault();
-		ADMIN = formData.user;
-		console.log(ADMIN);
 		fetch(`/login`, {
 			method: "POST",
 			headers: {
@@ -36,7 +34,6 @@ function Login({ setUser, ADMIN }) {
 				if (r.ok) {
 					r.json().then((data) => {
 						setUser(data);
-						history.push(`/${ADMIN}`);
 					});
 				} else {
 					r.json().then((err) => {
@@ -45,6 +42,8 @@ function Login({ setUser, ADMIN }) {
 					});
 				}
 			});
+		
+			
 		
 		
 		setFormData({ username: "", password: "", user: "" });

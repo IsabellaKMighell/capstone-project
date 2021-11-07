@@ -1,13 +1,27 @@
-import { Menu } from "semantic-ui-react";
-import { Link } from "react-router-dom";
-import Login from "./Login";
+import {Link} from "react-router-dom"
 
-function NavBar({ retrieveLoggedInStatus, setLoggedInStatus, loggedInStatus, setUser }) {
+function NavBar({handleLogout, user}) {
 	
 
 	return (
-		<div>
-		</div>
+		<>
+			<div>
+				
+						<Link to="/consumers">
+							<button>Home</button>
+						</Link>
+						
+					
+						<Link to="/" onClick={handleLogout}>
+							<button>Logout</button>
+						</Link>
+				
+						<Link to="/login">
+						<button>Login</button>
+						</Link>
+				
+			</div>
+		</>
 	);
 }
 

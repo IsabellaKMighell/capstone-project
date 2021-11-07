@@ -1,24 +1,28 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Auth from "./Auth";
-import BusinessUser from "./BusinessUser"
 
 import {
-	Switch,
-	Route,
-	Redirect,
-	useHistory,
+	useHistory, Route
 } from "react-router-dom";
 import NavBar from "./Navbar";
+import Home from "./Home"
 
 function App() {
-	let ADMIN = null;
 	const [user, setUser] = useState(null);
 	const [reRender, setReRender] = useState(false);
+	const [businesses, setBusinesses] = useState([])
+	
+
 
 	const history = useHistory();
+
 	
 	useEffect(() => {
+		getBusinesses();
+		getCurrentUser();
+	}, [reRender]);
+	function getCurrentUser(){
 		fetch("/me")
 			.then((response) => response.json())
 			.then((data) => {
@@ -28,45 +32,64 @@ function App() {
 			})
 			.catch((error) => {
 				console.log(error.message);
-			});
-	}, [reRender]);
+			});}
 	
-
-	function setAdmin(data) {
-		console.log(data);
-		if (data.hasOwnProperty("business_user")) {
-			ADMIN = "business_user";
-		} else if (data.hasOwnProperty("consumer")) {
-			ADMIN = "consumer";
-		} else {
-			ADMIN = null;
-		}
+	function getBusinesses(){
+		fetch("/businesses")
+			.then((response) => response.json())
+			.then((businesses) => { setBusinesses(businesses)
+			})
+			.catch((error) => {
+				console.log(error.message);
+			});
 	}
 
+	/*
+	//geolocation functionality
+	const [latitude, setLatitude] = useState(null)
+	const [longitude, setLongitude] = useState(null)
+	navigator.geolocation.getCurrentPosition(function(position) {
+		setLatitude( position.coords.latitude)
+		setLongitude(position.coords.longitude)
+		  });
+	
+	
+	function setLocation(longitude, latitude){
+		fetch("/consumers",{
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				longitude: {longitude},
+				latitude: {latitude},
+			}),
+		})
+			.then((r) => r.json())
+
+	}*/
 	function handleLogout() {
 		fetch("/logout", {
 			method: "DELETE",
 		}).then(() => {
 			setUser(null);
-			ADMIN = null;
 			console.log(`${user.username} logged out!`);
 
 			setReRender(!reRender);
 			history.push("/login");
 		});
-		ADMIN = null;
 	}
+	
 
-	if (user) {
-		setAdmin(user);
-		console.log(user);
-		console.log(ADMIN);
-	}
+	
 	return (
 		<div className="App">
-		<NavBar handleLogout={handleLogout} user={user} ADMIN={ADMIN} />
-			
-		<Auth setUser={setUser} user={user} ADMIN={ADMIN} />
+		<h1>Succession</h1>
+		<NavBar handleLogout={handleLogout} user={user} />
+		<Auth setUser={setUser} user={user} />
+			<Route path="/consumers">
+				<Home businesses={businesses}/>
+			</Route>
 		</div>
 	);
 }

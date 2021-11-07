@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function CreateNewUser({ setUser, ADMIN}) {
 	const [formData, setFormData] = useState({
@@ -8,7 +8,7 @@ function CreateNewUser({ setUser, ADMIN}) {
 		user: "",
 	});
 	
-	const history = useHistory();
+	
 
    
 
@@ -20,8 +20,6 @@ function CreateNewUser({ setUser, ADMIN}) {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		console.log(formData);
-		ADMIN = formData.user;
 		fetch(`/${formData.user}_signup`, {
 			method: "POST",
 			headers: {
@@ -34,8 +32,9 @@ function CreateNewUser({ setUser, ADMIN}) {
 		})
 			.then((r) => r.json())
 			.then((data) => {
-				setUser(data);			
-				history.push(`/business_user`);
+				setUser(data);	
+				
+				
 			});
 		// .catch((err) => setUser(null));
 
