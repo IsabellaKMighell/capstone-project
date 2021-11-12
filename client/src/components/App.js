@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import NavBar from "./Navbar";
 import Auth from "./Auth";
-
 import {
 	useHistory, Route
 } from "react-router-dom";
-import NavBar from "./Navbar";
+
 import Home from "./Home"
 import IndividualBusiness from "./IndividualBusiness";
 

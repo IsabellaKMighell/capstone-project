@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import {  Link } from "react-router-dom";
+import { Button, Form } from 'semantic-ui-react'
 
 function Login({ setUser}) {
 	const [formData, setFormData] = useState({
 		username: "",
 		password: "",
-		user: "",
+		user: "consumer",
 	});
 	
 	
@@ -52,40 +53,36 @@ function Login({ setUser}) {
 	const loginForm = (
 		<>
 			<h1>Login</h1>
-			<form onSubmit={handleSubmit}>
-					<label>Username</label>
-					<input
-						type="text"
-						placeholder="Username"
-						name="username"
+			
+  				<Form onSubmit={handleSubmit}>
+    			<Form.Field>
+      				<label>Username</label>
+     		 		<input type='text'
+						placeholder='Username'
+						name='username'
 						value={formData.username}
-						onChange={handleChange}
-					/>
-				
-					<label>Password</label>
-					<input
-						type="text"
-						placeholder="Password"
-						name="password"
+						onChange={handleChange} />
+    			</Form.Field>
+    			<Form.Field>
+      				<label>Password</label>
+      				<input type='text'
+						placeholder='Password'
+						name='password'
 						value={formData.password}
-						onChange={handleChange}
-					/>
-
-					<select value={formData.user} onChange={handleChange} name="user">
-        				<option value="consumer">Consumer</option>
-        				<option value="business_user">Business User</option>
-					</select>
-
-					<input type="submit"/>
-
-			</form>
-
+						onChange={handleChange}/>
+    			</Form.Field>
+   
+    			<Button type='submit'>Submit</Button>
+  			</Form>
 		</>
-	);
+		)
+
+		
 	return (
 		<div>
 		<div>{loginForm}</div>
-		<Link to={`/new_user`}><button>Create an Account</button></Link>
+		<Link to={`/new_user`}><Button>Create an Account</Button></Link>
+		<></>
 		</div>
 	);
 }

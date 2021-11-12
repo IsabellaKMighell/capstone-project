@@ -11,7 +11,7 @@ function Auth({ setUser, user, ADMIN }) {
 		<Route path="/login">
 			<Login setUser={setUser} ADMIN={ADMIN} user={user}/>
 		</Route>
-		<Route path="/new_user">
+		<Route exact path="/new_user">
 			<CreateNewUser setUser={setUser} ADMIN={ADMIN} user={user}/>
 		</Route>
 		</Switch>

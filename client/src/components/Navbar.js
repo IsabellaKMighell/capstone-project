@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom"
+import { Button} from 'semantic-ui-react'
 
 function NavBar({handleLogout, user}) {
 	
@@ -8,16 +9,16 @@ function NavBar({handleLogout, user}) {
 			<div>
 				
 						<Link to="/consumers">
-							<button>Home</button>
+							<Button>Home</Button>
 						</Link>
 						
 					
 						<Link to="/" onClick={handleLogout}>
-							<button>Logout</button>
+							<Button>Logout</Button>
 						</Link>
 				
 						<Link to="/login">
-						<button>Login</button>
+						<Button>Login</Button>
 						</Link>
 				
 			</div>

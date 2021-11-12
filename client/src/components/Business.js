@@ -1,4 +1,6 @@
 import {Link} from "react-router-dom"
+import { Button} from 'semantic-ui-react'
+
 function Business({id, name, address, logo, handleIndividualBusiness}) {
     
       
@@ -8,7 +10,7 @@ function Business({id, name, address, logo, handleIndividualBusiness}) {
     return (
         <div className="businessesDiv">
             <img src={logo} alt="Business Logo" className="logo"/>
-            <Link to="/business_page"><button onClick={() =>handleIndividualBusiness(id)}>{name}</button> </Link>
+            <Link to="/business_page"><Button onClick={() =>handleIndividualBusiness(id)}>{name}</Button> </Link>
             <h4>{address}</h4>
             
         </div>

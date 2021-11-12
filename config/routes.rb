@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :lines
+  resources :lines, only: [:create, :destroy]
   resources :consumers
   resources :business_users
   resources :businesses
