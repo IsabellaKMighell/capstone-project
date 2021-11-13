@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import Timer from "./Timer"
+import TimeRemaining from "./TimeRemaining";
 import { Button} from 'semantic-ui-react'
-//import TimeRemaining from "./TimeRemaining";
+
+
 
 function IndividualBusiness({business, lat, long}){
     const{id, name, longitude, latitude, image, address, waittime, business_line} = business
     const [errors, setErrors] = useState(null);
     const [lineItem, setLineItem]=useState(null);
-
+    console.log(lat, long)
     const R = 6371e3; // metres
     const φ1 = lat * Math.PI/180; // φ, λ in radians
     const φ2 = latitude * Math.PI/180;
@@ -58,10 +60,14 @@ function IndividualBusiness({business, lat, long}){
             <h4>{address}</h4>
             <h4>The current approximated wait time for {name} is {waittime/60} minutes</h4>
             {lineItem ? 
-                <>
-                    <div>You're in line!</div> 
-                    <Timer business_line={business_line} lineItem={lineItem}/>
+                <>  
                     
+                    <div>
+                        <div>You're in line!</div> 
+                        <Timer business_line={business_line} lineItem={lineItem}/>
+                        <TimeRemaining waittime={waittime}/>
+                    </div>
+                
                 </>:
                 <Button onClick={addToLine}>Get in Line</Button> }
             

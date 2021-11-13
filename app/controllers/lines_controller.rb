@@ -10,7 +10,6 @@ class LinesController < ApplicationController
     end
 
     def destroy
-        buybug;
         line_item = Line.find_by(id: params[:id])
         line_item.destroy
         head :no_content

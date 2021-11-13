@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import NavBar from "./Navbar";
 import Auth from "./Auth";
+import Header from "./Header"
 import {
 	useHistory, Route
 } from "react-router-dom";
 
 import Home from "./Home"
 import IndividualBusiness from "./IndividualBusiness";
+import TimeRemaining from "./TimeRemaining";
 
 function App() {
 	const [user, setUser] = useState(null);
@@ -83,16 +85,17 @@ function App() {
 
 	
 	return (
-		<div className="App">
-		<h1>Succession</h1>
+		<div>
+		<Header/>
 		<NavBar handleLogout={handleLogout} user={user} />
 		<Auth setUser={setUser} user={user} />
-			<Route path="/consumers">
+			<Route path="/businesses">
 				<Home businesses={businesses} user={user} handleIndividualBusiness={handleIndividualBusiness}/>
 			</Route>
 			<Route path="/business_page">
 					<IndividualBusiness business={business} lat={lat} long={long} user={user}/>
 			</Route>
+			
 		</div>
 	);
 }

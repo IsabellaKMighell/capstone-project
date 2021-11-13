@@ -1,21 +1,23 @@
-import {useState} from "react"
+import {useState, useEffect} from "react"
 function TimeRemaining({waittime}){
-    const [counter, setCounter]=useState(0)  
-    setCounter(waittime)
+    const [seconds, setSeconds]=useState(waittime) 
     
-    
-    let timer = setInterval( countdown(), 1000);
-    
-    function countdown() {
-        
-        if (counter>0){
-            setCounter( counter - 1);
-        }
-            clearInterval(timer)
+    useEffect(() => {
+        let interval = null;
+        if (seconds>0) {
+      interval = setInterval(() => {
+        setSeconds(seconds => seconds - 1);
+      }, 1000);
+    } else if (seconds === 0) {
+      clearInterval(interval);
     }
+    return () => clearInterval(interval);
+    }, [seconds]);
+    
+        
     return (
         <div>
-            <h3>Wait time remaining: {counter}</h3>
+            <h3>Wait time remaining: {seconds} seconds</h3>
         </div>
     )
 }

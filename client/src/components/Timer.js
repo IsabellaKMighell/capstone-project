@@ -1,25 +1,26 @@
-
+import{ useState} from "react"
 
 function Timer({ business_line, lineItem}){ 
     let timeInterval = lineItem.time * 1000
-    
+    const [index, setIndex]= useState(0)
     
 
-    let updateQ = setInterval(handleDestroyPositionOne(), timeInterval)
+    let updateQ = setTimeout(function(){
+        handleDestroyPositionOne(index) 
+        setIndex(index => index+1)}, timeInterval)
     
     function handleDestroyPositionOne(){
-        let index = 0;
-        if(business_line !== [index]){
-            let id = business_line[index].id
+        let id = business_line[index].id
+        if(business_line.length>0){
             fetch(`/lines/${id}`,{
                 method: "DELETE"
             })
-            index+=1
-            
+            console.log(index)
         }else{
-            clearInterval(updateQ)
+            clearTimeout(updateQ)
         }
-
+        
+        
     }
     return(
         <>

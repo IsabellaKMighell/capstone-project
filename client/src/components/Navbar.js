@@ -7,9 +7,9 @@ function NavBar({handleLogout, user}) {
 	return (
 		<>
 			<div>
-				
-						<Link to="/consumers">
-							<Button>Home</Button>
+						
+						<Link to="/businesses">
+							<Button>Businesses</Button>
 						</Link>
 						
 					
