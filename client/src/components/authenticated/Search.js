@@ -1,4 +1,4 @@
-import { Button, Form, Icon } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 function Search({search, setSearch}){
     return(
     <div className="searchbar">

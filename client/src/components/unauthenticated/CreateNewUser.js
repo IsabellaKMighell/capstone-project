@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Button, Form } from 'semantic-ui-react'
 
-function CreateNewUser() {
+function CreateNewUser({setUser}) {
 	const [formData, setFormData] = useState({
 		username: "",
 		password: "",
@@ -30,15 +30,25 @@ function CreateNewUser() {
 				username: formData.username,
 				password: formData.password,
 			}),
+		}).then(res => {
+			if (res.ok) {
+				res.json().then(user => {
+					setUser(user)
+					history.push("/businesses")
+				})
+			} else {
+				res.json().then(errors => {
+					console.error(errors)
+				})
+			}
 		})
-			.then((r) => r.json());
 
 		setFormData({
 			username: "",
 			password: "",
             user:"consumer"
 		});
-		history.push("/businesses")
+		
 	}
 
 	const loginForm = (

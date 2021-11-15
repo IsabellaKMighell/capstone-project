@@ -16,8 +16,8 @@ code {
   padding: 20px 20px 20px 20px;
   font-variant: small-caps;
   font-size: xx-large;
-  color: black;
-  background-color: rgb(204, 51, 0);
+  color: white;
+  background-color: black;
   
 }
 .navbar{
@@ -59,7 +59,7 @@ div.ui.navbar.menu{
   font-variant: small-caps;
   font-size: 50px;
   font-weight: bolder;
-  background-image: url("https://images.pexels.com/photos/3490253/pexels-photo-3490253.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+  background-image: url("https://cdn.pixabay.com/photo/2020/04/06/10/02/clouds-5009055_960_720.jpg");
   background-size: cover;
   padding: 20px 20px 20px 10px;
   border-radius: 5px;
@@ -74,7 +74,7 @@ div.ui.navbar.menu{
 }
 .userForm > .ui.form .field>label {
   
-  color: rgb(204, 51, 0);
+  color: white;
   font-size: 1.928571em;
   font-weight: 700;
 

@@ -10,41 +10,39 @@ function NavBar({handleLogout, user}) {
 
 	return (
 	<Menu horizontal className="navbar">
-		
-	  
-      	<Link to="">
-      		<Menu.Item as='a'>
-        		<Icon name='home' />
-        		Home
-    		</Menu.Item>
-    	</Link>
-		
-		<Link to="" onClick={handleLogout}>	
-      		<Menu.Item as='a'>
-        		<Icon name='sign-out' />
-        		Logout
-      		</Menu.Item>
-      	</Link>
+		<Link to="/home">
+      			<Menu.Item as='a'>
+        			<Icon name='home' />
+        			Home
+    			</Menu.Item>
+    		</Link>
+		{user? (
+		<>
+			<Link to="/businesses">
+				<Menu.Item as='a'>
+        			<Icon name='map outline' />
+        			Businesses
+    			</Menu.Item>
+    		</Link>
 
-    	<Link to="/login">
-      		<Menu.Item as='a'>
-        		<Icon name='sign-in' />
-        		Login
-      		</Menu.Item>
-      	</Link>
-
+			<Link to="/home" onClick={handleLogout}>	
+				<Menu.Item as='a'>
+		  			<Icon name='sign-out' />
+		  			Logout
+				</Menu.Item>
+			</Link>
+		</>
+	) :(
+		<>
+			<Link to="/login">
+      			<Menu.Item as='a'>
+        			<Icon name='sign-in' />
+        			Login
+      			</Menu.Item>
+      		</Link>
+		</>
+	)}
 		
-		  
-		
-	
-		<Link to="/businesses">
-			<Menu.Item as='a'>
-        		<Icon name='map outline' />
-        		Businesses
-    		</Menu.Item>
-    	</Link>
-
-    	
 			
 	</Menu>
 	);
