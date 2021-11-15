@@ -1,14 +1,12 @@
 class BusinessSerializer < ActiveModel::Serializer
-  attributes :id, :name, :longitude, :latitude, :address, :image, :waittime, :business_line
+  attributes :id, :name, :longitude, :latitude, :address, :image, :guess
 
-  def waittime
+  def guess
     self.object.lines.map{|line| line.time}.sum
 
   end
 
-  def business_line
-    self.object.lines
-  end
+  
 
   
 end

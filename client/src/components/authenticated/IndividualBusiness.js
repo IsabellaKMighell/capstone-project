@@ -6,9 +6,12 @@ import { Button} from 'semantic-ui-react'
 
 
 function IndividualBusiness({business, lat, long}){
-    const{id, name, longitude, latitude, image, address, waittime, business_line} = business
+    const{id, name, longitude, latitude, image, address, guess} = business
+    
     const [errors, setErrors] = useState(null);
     const [lineItem, setLineItem]=useState(null);
+    
+
     console.log(lat, long)
     const R = 6371e3; // metres
     const φ1 = lat * Math.PI/180; // φ, λ in radians
@@ -23,8 +26,7 @@ function IndividualBusiness({business, lat, long}){
     const d = R * c// in metres
     const distance = Number(d.toFixed(4))
    
-    console.log(business_line)
-    
+   
     
     console.log(`Distance from Business: ${distance}`)
 
@@ -42,7 +44,8 @@ function IndividualBusiness({business, lat, long}){
             if (r.ok) {
                 r.json().then((data) => {
                     console.log(data);
-                    setLineItem(data)
+                    setLineItem(data);
+                    
                 });
             } else {
                 r.json().then((err) => {
@@ -53,6 +56,7 @@ function IndividualBusiness({business, lat, long}){
         });
     }
 
+
     return(
         <div className="individualBusiness"> 
             <div className="individualFixedContent">
@@ -62,18 +66,19 @@ function IndividualBusiness({business, lat, long}){
                     <p><h4>Address:</h4>  {address}</p>
                 </div>
             </div>
-            <h4>The current approximated wait time for {name} is {waittime/60} minutes</h4>
+            
             {lineItem ? 
                 <>  
-                    
                     <div>
-                        <h4>You're in line!</h4> 
-                        <Timer business_line={business_line} lineItem={lineItem}/>
-                        <TimeRemaining waittime={waittime}/>
+                        <Timer lineItem={lineItem}/>
+                        <TimeRemaining lineItem={lineItem}/>
                     </div>
                 
                 </>:
-                <Button onClick={addToLine}>Get in Line</Button> }
+                <>
+                    <h4>Approximate Wait Time: {guess/60} minutes</h4>
+                    <Button onClick={addToLine}>Get in Line</Button>
+                </> }
             
         </div>
     )

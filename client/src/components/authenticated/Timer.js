@@ -1,7 +1,10 @@
 import{ useState} from "react"
 
-function Timer({ business_line, lineItem}){ 
+function Timer({ lineItem}){ 
+    const{line, line_length}= lineItem
+    console.log(line)
     let timeInterval = lineItem.time * 1000
+   
     const [index, setIndex]= useState(0)
     
 
@@ -11,12 +14,14 @@ function Timer({ business_line, lineItem}){
     }, timeInterval)
     
     function handleDestroyPositionOne(){
-        let id = business_line[index].id
-        if(business_line.length>0){
+       
+        
+        if(index < line_length){
+            let id = line[index].id
             fetch(`/lines/${id}`,{
                 method: "DELETE"
             })
-            console.log(index)
+            console.log(id)
         }else{
             clearTimeout(updateQ)
         }
