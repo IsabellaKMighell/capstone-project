@@ -1,9 +1,9 @@
 import{ useState} from "react"
 
 function Timer({ lineItem}){ 
-    const{line, line_length}= lineItem
+    const{time, line, line_length}= lineItem
     console.log(line)
-    let timeInterval = lineItem.time * 1000
+    let timeInterval = time * 1000
    
     const [index, setIndex]= useState(0)
     
