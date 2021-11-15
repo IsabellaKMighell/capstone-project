@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import NavBar from "./Navbar";
-import Auth from "./Auth";
 import Header from "./Header"
 import {
-	useHistory, Route
+	useHistory, Route, Switch
 } from "react-router-dom";
-
 import Home from "./Home"
+import CreateNewUser from "./CreateNewUser";
+import Login from "./Login";
+import BusinessHome from "./BusinessHome"
 import IndividualBusiness from "./IndividualBusiness";
-import TimeRemaining from "./TimeRemaining";
+
 
 function App() {
 	const [user, setUser] = useState(null);
@@ -36,6 +37,7 @@ function App() {
 				console.log("RERENDER");
 			})
 			.catch((error) => {
+				setUser(null)
 				console.log(error.message);
 			});}
 	
@@ -78,25 +80,37 @@ function App() {
 			console.log(`${user.username} logged out!`);
 
 			setReRender(!reRender);
-			history.push("/login");
+			history.push("");
 		});
 	}
+	console.log(user)
 	
 
 	
 	return (
-		<div>
-		<Header/>
+	<div>
 		<NavBar handleLogout={handleLogout} user={user} />
-		<Auth setUser={setUser} user={user} />
-			<Route path="/businesses">
-				<Home businesses={businesses} user={user} handleIndividualBusiness={handleIndividualBusiness}/>
+		<Header/>
+		<Switch>
+
+			<Route exact path="/login">
+				<Login setUser={setUser}  user={user}/>
 			</Route>
-			<Route path="/business_page">
-					<IndividualBusiness business={business} lat={lat} long={long} user={user}/>
+			<Route exact path="/new_user">
+				<CreateNewUser setUser={setUser}  user={user}/>
 			</Route>
 			
-		</div>
+			<Route exact path="/businesses">
+				<BusinessHome businesses={businesses} user={user} handleIndividualBusiness={handleIndividualBusiness}/>
+			</Route>
+			<Route exact path="/business_page">
+					<IndividualBusiness business={business} lat={lat} long={long} user={user}/>
+			</Route>
+			<Route exact path="">
+				<Home />
+			</Route>
+		</Switch>
+	</div>
 	);
 }
 

@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom"
-import { Button} from 'semantic-ui-react'
+import { Grid, Button} from 'semantic-ui-react'
 
 function Business({id, name, address, logo, handleIndividualBusiness}) {
     
@@ -9,9 +9,26 @@ function Business({id, name, address, logo, handleIndividualBusiness}) {
     //need to add a border to table
     return (
         <div className="businessesDiv">
-            <img src={logo} alt="Business Logo" className="logo"/>
-            <Link to="/business_page"><Button onClick={() =>handleIndividualBusiness(id)}>{name}</Button> </Link>
-            <h4>{address}</h4>
+            <Grid celled='internally'>
+    <Grid.Row>
+      <Grid.Column width={3}>
+      <img src={logo} alt="Business Logo" className="logo"/>
+      </Grid.Column>
+      <Grid.Column width={3}>
+      <h2>{name}</h2>
+      </Grid.Column>
+      <Grid.Column width={5}>
+      <h4>{address}</h4>
+      </Grid.Column>
+      <Grid.Column width={3}>
+      <Link to="/business_page"><Button onClick={() =>handleIndividualBusiness(id)}>View Details</Button> </Link>
+      </Grid.Column>
+    </Grid.Row>
+    </Grid>
+            
+            
+            
+            
             
         </div>
     );

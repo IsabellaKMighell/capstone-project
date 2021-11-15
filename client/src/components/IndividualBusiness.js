@@ -54,16 +54,20 @@ function IndividualBusiness({business, lat, long}){
     }
 
     return(
-        <div>
-            <img src={image} alt="Business Logo" className="logo"/>
-            <h3>{name}</h3> 
-            <h4>{address}</h4>
+        <div className="individualBusiness"> 
+            <div className="individualFixedContent">
+                <img src={image} alt="Business Logo" className="individualLogo"/>
+                <div>
+                    <h2>{name}</h2> 
+                    <p><h4>Address:</h4>  {address}</p>
+                </div>
+            </div>
             <h4>The current approximated wait time for {name} is {waittime/60} minutes</h4>
             {lineItem ? 
                 <>  
                     
                     <div>
-                        <div>You're in line!</div> 
+                        <h4>You're in line!</h4> 
                         <Timer business_line={business_line} lineItem={lineItem}/>
                         <TimeRemaining waittime={waittime}/>
                     </div>

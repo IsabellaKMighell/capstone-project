@@ -7,7 +7,8 @@ function Timer({ business_line, lineItem}){
 
     let updateQ = setTimeout(function(){
         handleDestroyPositionOne(index) 
-        setIndex(index => index+1)}, timeInterval)
+        setIndex(index => index+1)
+    }, timeInterval)
     
     function handleDestroyPositionOne(){
         let id = business_line[index].id
@@ -19,7 +20,6 @@ function Timer({ business_line, lineItem}){
         }else{
             clearTimeout(updateQ)
         }
-        
         
     }
     return(

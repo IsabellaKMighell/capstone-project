@@ -2,9 +2,12 @@ import Business from './Business';
 
 
 
-function BusinessList({businesses, handleIndividualBusiness}) {
+function BusinessList({businesses, handleIndividualBusiness, search}) {
+    let filteredBusinesses = businesses.filter((business)=>{
+        return business.name.toLowerCase().includes(search.toLowerCase())
+    })
 
-    let businessList= businesses.map((business)=>{
+    let businessList= filteredBusinesses.map((business)=>{
         return(
             <Business 
             key={business.id}

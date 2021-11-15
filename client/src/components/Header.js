@@ -1,8 +1,11 @@
+import {Icon} from "semantic-ui-react"
 function Header(){
     return(
-        <div>
-            <span>▻▻</span>
-            <h1>Line Succession</h1>
-        </div>
+        <header className="header">
+            
+            <h1 className="title"><span><Icon name= 'hourglass start'/></span>Line Succession </h1>
+            
+        </header>
     )
 }
+export default Header;

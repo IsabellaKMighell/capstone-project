@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-import {  Link } from "react-router-dom";
+import {  Link, useHistory } from "react-router-dom";
 import { Button, Form } from 'semantic-ui-react'
 
-function Login({ setUser}) {
+function Login() {
 	const [formData, setFormData] = useState({
 		username: "",
 		password: "",
 		user: "consumer",
 	});
-	
-	
-	const [errors, setErrors] = useState(null);
+	const history = useHistory();
 
 	function handleChange(e) {
 		let name = e.target.name;
@@ -31,30 +29,13 @@ function Login({ setUser}) {
 				password: formData.password,
 			}),
 		})
-			.then((r) => {
-				if (r.ok) {
-					r.json().then((data) => {
-						setUser(data);
-					});
-				} else {
-					r.json().then((err) => {
-						setErrors(err.errors);
-						console.log(errors);
-					});
-				}
-			});
-		
-			
-		
+		history.push("/businesses")
 		
 		setFormData({ username: "", password: "", user: "" });
 	}
 
 	const loginForm = (
-		<>
-			<h1>Login</h1>
-			
-  				<Form onSubmit={handleSubmit}>
+  			<Form onSubmit={handleSubmit}>
     			<Form.Field>
       				<label>Username</label>
      		 		<input type='text'
@@ -74,15 +55,15 @@ function Login({ setUser}) {
    
     			<Button type='submit'>Submit</Button>
   			</Form>
-		</>
 		)
 
 		
 	return (
-		<div>
-		<div>{loginForm}</div>
-		<Link to={`/new_user`}><Button>Create an Account</Button></Link>
-		<></>
+		<div className="formDiv">
+			<h1>Login</h1>
+			<div className="userForm">{loginForm}</div>
+			<Link to={`/new_user`}><Button className="loginButton">Create an Account</Button></Link>
+		
 		</div>
 	);
 }

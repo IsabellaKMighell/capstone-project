@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Button, Form } from 'semantic-ui-react'
 
-function CreateNewUser({ setUser}) {
+function CreateNewUser() {
 	const [formData, setFormData] = useState({
 		username: "",
 		password: "",
 		user: "",
 	});
 	
-	
+	const history = useHistory();
 
    
 
@@ -31,24 +31,19 @@ function CreateNewUser({ setUser}) {
 				password: formData.password,
 			}),
 		})
-			.then((r) => r.json())
-			.then((data) => {
-				setUser(data);	
-				
-				
-			});
-		// .catch((err) => setUser(null));
+			.then((r) => r.json());
 
 		setFormData({
 			username: "",
 			password: "",
             user:"consumer"
 		});
+		history.push("/businesses")
 	}
 
 	const loginForm = (
 		<>
-			<h1>Create an account</h1>
+			
 			<Form onSubmit={handleSubmit}>
     			<Form.Field>
       				<label>Username</label>
@@ -74,11 +69,12 @@ function CreateNewUser({ setUser}) {
 				
 	);
 	return (
-		<div>
-			<div>{loginForm}</div>
-			<div>
-				Already have an account?
-			<Link to={`/login`}><button>Login</button></Link>
+		<div className="formDiv">
+			<h1>Create an account</h1>
+			<div className="userForm">{loginForm}</div>
+			<div className="loginSwitch">
+				<h3>Already have an account?</h3>
+				<Link to={`/login`}><Button className="loginButton">Login</Button></Link>
 			</div>
 		</div>
 	);
