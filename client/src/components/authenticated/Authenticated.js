@@ -30,9 +30,6 @@ function Authenticated({ businesses, user, setReRender, reRender}){
     return(
     <>
         <Switch>
-            <Route exact path="/home">
-                <Home/>
-            </Route>
 
             <Route exact path="/businesses">
 				<BusinessHome businesses={businesses} user={user} handleIndividualBusiness={handleIndividualBusiness}/>
@@ -40,6 +37,10 @@ function Authenticated({ businesses, user, setReRender, reRender}){
 			<Route exact path="/business_page">
 					<IndividualBusiness business={business} lat={lat} long={long} user={user}/>
 			</Route>
+
+			<Route exact path="/">
+                <Home/>
+            </Route>
     
         </Switch>
     </>

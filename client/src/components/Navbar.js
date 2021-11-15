@@ -10,7 +10,7 @@ function NavBar({handleLogout, user}) {
 
 	return (
 	<Menu horizontal className="navbar">
-		<Link to="/home">
+		<Link to="/">
       			<Menu.Item as='a'>
         			<Icon name='home' />
         			Home
@@ -25,7 +25,7 @@ function NavBar({handleLogout, user}) {
     			</Menu.Item>
     		</Link>
 
-			<Link to="/home" onClick={handleLogout}>	
+			<Link to="/" onClick={handleLogout}>	
 				<Menu.Item as='a'>
 		  			<Icon name='sign-out' />
 		  			Logout

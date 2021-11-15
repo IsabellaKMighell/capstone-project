@@ -9,9 +9,7 @@ function Unauthenticated({setUser}){
     return(
     <>
         <Switch>
-            <Route exact path="/home">
-                <Home/>
-            </Route>
+            
 
             <Route exact path="/login">
                 <Login setUser={setUser} />
@@ -19,6 +17,10 @@ function Unauthenticated({setUser}){
 
             <Route exact path="/new_user">
                 <CreateNewUser setUser={setUser} />
+            </Route>
+
+            <Route exact path="/">
+                <Home/>
             </Route>
     
         </Switch>

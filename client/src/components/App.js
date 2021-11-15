@@ -53,7 +53,7 @@ function App() {
 			console.log(`${user.username} logged out!`);
 
 			setReRender(!reRender);
-			history.push("/home");
+			history.push("/");
 		});
 	}
 	console.log(user)
