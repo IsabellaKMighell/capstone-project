@@ -1,3 +1,3 @@
 class BusinessUserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :password_digest
+  attributes :id, :first_name, :last_name, :username, :password_digest, :avatar
 end

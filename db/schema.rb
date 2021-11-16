@@ -16,9 +16,11 @@ ActiveRecord::Schema.define(version: 2021_11_06_003809) do
   enable_extension "plpgsql"
 
   create_table "business_users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
     t.string "username"
     t.string "password_digest"
-    t.string "title"
+    t.string "avatar"
     t.bigint "business_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -29,6 +31,7 @@ ActiveRecord::Schema.define(version: 2021_11_06_003809) do
     t.string "name"
     t.string "image"
     t.string "address"
+    t.string "category"
     t.float "longitude"
     t.float "latitude"
     t.datetime "created_at", precision: 6, null: false
@@ -36,11 +39,12 @@ ActiveRecord::Schema.define(version: 2021_11_06_003809) do
   end
 
   create_table "consumers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
     t.string "username"
     t.string "password_digest"
     t.string "title"
-    t.float "longitude"
-    t.float "latitude"
+    t.string "avatar"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -8,19 +8,20 @@
 
 puts "seeding consumers"
 30.times do
-    Consumer.create!(username: Faker::FunnyName.two_word_name, password: "test")
+    Consumer.create!(first_name:Faker::Name.first_name , last_name: Faker::Name.last_name, username: Faker::FunnyName.two_word_name, password: "test", avatar:Faker::Avatar.image )
 end
 
 puts "seeding businesses"
+categories = ["Food & Drink", "Shopping", "Entertainment", "Productivity", "Health"]
 
-business_one = Business.create!(name: "Starbucks", longitude: -73.99614, latitude: 40.730152, address: "25 Union Square W, New York, NY 10003", image: "https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png")
-business_two = Business.create!(name: "Sticky's", longitude: -73.9920, latitude: 40.7588, address: "24 E 23rd St, New York, NY 10010", image: "https://images.stickys.com/stickys-finger-joint_logo.png")
+business_one = Business.create!(name: "Starbucks", longitude: -73.99614, latitude: 40.730152, address: "25 Union Square W, New York, NY 10003", image: "https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png", category: "Food & Drink")
+business_two = Business.create!(name: "Sticky's", longitude: -73.9920, latitude: 40.7588, address: "24 E 23rd St, New York, NY 10010", image: "https://images.stickys.com/stickys-finger-joint_logo.png", category: "Food & Drink")
 
-business_three = Business.create!(name: "NYC DMV", longitude:	-73.935242 , latitude:40.730610 , address:"145 W 30th St, New York, NY 10001" , image: "https://static-assets.ny.gov/sites/all/themes/ny_gov/images/nygov-logo.png")
+business_three = Business.create!(name: "NYC DMV", longitude:	-73.935242 , latitude:40.730610 , address:"145 W 30th St, New York, NY 10001" , image: "https://static-assets.ny.gov/sites/all/themes/ny_gov/images/nygov-logo.png", category: "Productivity")
 
-business_four = Business.create!(name:"260 Sample Sale" , longitude: -73.986742, latitude: 40.745017, address:"261 Fifth Avenue New York, NY 10016" , image: "https://images.squarespace-cdn.com/content/v1/5eb46b958647180c34995e1c/1614373189357-7KSXN54A8BNTWH6LEOAN/260-Logo-LARGE_Black.png?format=1500w")
+business_four = Business.create!(name:"260 Sample Sale" , longitude: -73.986742, latitude: 40.745017, address:"261 Fifth Avenue New York, NY 10016" , image: "https://images.squarespace-cdn.com/content/v1/5eb46b958647180c34995e1c/1614373189357-7KSXN54A8BNTWH6LEOAN/260-Logo-LARGE_Black.png?format=1500w",  category: "Shopping")
 
-business_five = Business.create!(name:"MACE Cocktail Bar" , longitude:-73.998681 , latitude:40.733473 , address:"35 W. 8th Street New York 10011" , image: "https://images.squarespace-cdn.com/content/v1/607733688463f53c8ff482a3/1620405858658-XDKY0F9NBF1R2UI9L8QI/MACE_logo-full_white_WEB.png?format=1500w")
+business_five = Business.create!(name:"MACE Cocktail Bar" , longitude:-73.998681 , latitude:40.733473 , address:"35 W. 8th Street New York 10011" , image: "https://images.squarespace-cdn.com/content/v1/607733688463f53c8ff482a3/1620405858658-XDKY0F9NBF1R2UI9L8QI/MACE_logo-full_white_WEB.png?format=1500w" , category: "Food & Drink")
 
 puts "seeding lines"
 

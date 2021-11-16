@@ -4,6 +4,7 @@ class CreateBusinesses < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :image
       t.string :address
+      t.string :category
       t.float :longitude
       t.float :latitude
 

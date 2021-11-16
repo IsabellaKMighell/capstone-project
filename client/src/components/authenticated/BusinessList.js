@@ -22,6 +22,8 @@ function BusinessList({businesses, handleIndividualBusiness, search}) {
         )
     })
 
+    
+
     return (
         <div className="listsDiv">
             {businessList}

@@ -1,3 +1,3 @@
 class ConsumerSerializer < ActiveModel::Serializer
-  attributes :id, :username, :longitude, :latitude
+  attributes :id, :first_name, :last_name, :username, :password_digest, :avatar
 end

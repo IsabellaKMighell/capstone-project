@@ -15,7 +15,7 @@ class ConsumersController < ApplicationController
     private
 
     def consumer_params
-        params.permit(:username, :password)
+        params.permit(:username, :password, :first_name, :last_name, :avatar)
     end
     def location_params
         params.permit(:latitude, :longitude)

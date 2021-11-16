@@ -66,9 +66,9 @@ function IndividualBusiness({business, lat, long}){
                     <h2>{name}</h2> 
                     <p><h4>Address:</h4>  {address}</p>
                 </div>
-               {/* <div>
-                    <Map />
-                </div>*/} 
+               <div>
+                    {/*<Map />*/}
+                </div>
             </div>
             
             {lineItem ? 

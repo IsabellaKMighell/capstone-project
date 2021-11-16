@@ -10,26 +10,21 @@ function Business({id, name, address, logo, handleIndividualBusiness}) {
     return (
         <div className="businessesDiv">
             <Grid celled='internally'>
-    <Grid.Row>
-      <Grid.Column width={3}>
-      <img src={logo} alt="Business Logo" className="logo"/>
-      </Grid.Column>
-      <Grid.Column width={3}>
-      <h2>{name}</h2>
-      </Grid.Column>
-      <Grid.Column width={5}>
-      <h4>{address}</h4>
-      </Grid.Column>
-      <Grid.Column width={3}>
-      <Link to="/business_page"><Button onClick={() =>handleIndividualBusiness(id)}>View Details</Button> </Link>
-      </Grid.Column>
-    </Grid.Row>
-    </Grid>
-            
-            
-            
-            
-            
+                <Grid.Row>
+                    <Grid.Column width={3}>
+                        <img src={logo} alt="Business Logo" className="logo"/>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                        <h2>{name}</h2>
+                    </Grid.Column>
+                    <Grid.Column width={5}>
+                        <h4>{address}</h4>
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                        <Link to="/business_page"><Button onClick={() =>handleIndividualBusiness(id)}>View Details</Button> </Link>
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid>
         </div>
     );
 }

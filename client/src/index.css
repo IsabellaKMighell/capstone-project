@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Lucida Console", Courier, monospace;
   
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -15,7 +15,7 @@ code {
 .title{
   padding: 20px 20px 20px 20px;
   font-variant: small-caps;
-  font-size: xx-large;
+  font-size: 52px;
   color: white;
   background-color: black;
   
@@ -40,12 +40,13 @@ div.ui.navbar.menu{
 
 .homepage>h3{
   font-variant: small-caps;
-  font-size: x-large;
+  font-size: 36px;
 }
 
 #about{
-  width: 550px;
-  font-size: larger;
+  width: 600px;
+  font-size: 20px;
+  
 }
 
 .formDiv{
