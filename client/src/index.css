@@ -11,6 +11,12 @@ code {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.header{
+  display:flex;
+  justify-content: left;
+  background-color: black;
+}
+
 
 .title{
   padding: 20px 20px 20px 20px;
@@ -20,6 +26,28 @@ code {
   background-color: black;
   
 }
+
+.hourglass{
+  width: 100px;
+  height: 100px;
+  background-color: #000000;
+  animation-name: spin;
+  animation-duration: 5000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; 
+  margin-right: 30px;
+}
+
+@keyframes spin {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(360deg);
+  }
+}
+
+
 .navbar{
   font-variant: small-caps;
   font-weight: 900;

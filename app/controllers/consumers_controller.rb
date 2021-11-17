@@ -7,17 +7,12 @@ class ConsumersController < ApplicationController
         render json: consumer ,status: :created
     end
 
-    def update
-        consumer = Consumer.update!(location_params)
-        render json: consumer ,status: :ok
-    end
+    
 
     private
 
     def consumer_params
         params.permit(:username, :password, :first_name, :last_name, :avatar)
     end
-    def location_params
-        params.permit(:latitude, :longitude)
-    end
+    
 end

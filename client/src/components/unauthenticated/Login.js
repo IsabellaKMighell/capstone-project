@@ -57,7 +57,7 @@ function Login({setUser}) {
     			</Form.Field>
     			<Form.Field>
       				<label>Password</label>
-      				<input type='text'
+      				<input type='password'
 						placeholder='Password'
 						name='password'
 						value={formData.password}

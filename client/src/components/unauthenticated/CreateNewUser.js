@@ -6,6 +6,8 @@ function CreateNewUser({setUser}) {
 	const [formData, setFormData] = useState({
 		username: "",
 		password: "",
+		first_name:"",
+		last_name:"",
 		user: "",
 	});
 	
@@ -46,6 +48,8 @@ function CreateNewUser({setUser}) {
 		setFormData({
 			username: "",
 			password: "",
+			first_name:"",
+			last_name:"",
             user:"consumer"
 		});
 		
@@ -55,6 +59,23 @@ function CreateNewUser({setUser}) {
 		<>
 			
 			<Form onSubmit={handleSubmit}>
+			<Form.Field>
+      				<label>First Name</label>
+     		 		<input type='text'
+						placeholder='First Name'
+						name='first_name'
+						value={formData.first_name}
+						onChange={handleChange} />
+    			</Form.Field>
+				<Form.Field>
+      				<label>Last Name</label>
+     		 		<input type='text'
+						placeholder='Last Name'
+						name='last_name'
+						value={formData.last_name}
+						onChange={handleChange} />
+    			</Form.Field>
+				
     			<Form.Field>
       				<label>Username</label>
      		 		<input type='text'
@@ -63,14 +84,17 @@ function CreateNewUser({setUser}) {
 						value={formData.username}
 						onChange={handleChange} />
     			</Form.Field>
+
     			<Form.Field>
       				<label>Password</label>
-      				<input type='text'
+      				<input type='password'
 						placeholder='Password'
 						name='password'
 						value={formData.password}
 						onChange={handleChange}/>
     			</Form.Field>
+
+				
    
     			<Button type='submit'>Submit</Button>
   			</Form>
